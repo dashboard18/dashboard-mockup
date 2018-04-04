@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'ubud-root',
+    selector: 'naker-root',
     templateUrl: './app.component.html',
 })
 export class AppComponent {
