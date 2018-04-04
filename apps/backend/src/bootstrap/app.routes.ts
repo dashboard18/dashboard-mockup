@@ -12,7 +12,6 @@ import { ModuleWithProviders } from '@angular/core';
 /**
  * @author  Iqbal Maulana <iq.bluejack@gmail.com>
  */
-const routes: Routes = [
-];
+const routes: Routes = [];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

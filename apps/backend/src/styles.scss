@@ -1,5 +1,5 @@
-@import "../../../assets/styles/variables";
-@import "~@ubud/bootstrap-theme/main";
+@import '../../../assets/styles/variables';
+@import '~@ubud/bootstrap-theme/main';
 
 html,
 body {
@@ -10,11 +10,10 @@ body {
 
 a {
     outline: none;
-    -webkit-transition: all .3s ease-out;
-    transition: all .3s ease-out;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
 
     &:hover {
         text-decoration: none;
     }
 }
-
