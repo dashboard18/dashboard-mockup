@@ -12,5 +12,4 @@ import { ActionReducerMap } from '@ngrx/store';
 /**
  * @author  Iqbal Maulana <iq.bluejack@gmail.com>
  */
-export const appReducer: ActionReducerMap<any> = {
-};
+export const appReducer: ActionReducerMap<any> = {};

@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
 
@@ -20,15 +19,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-    ],
+    declarations: [AppComponent],
     imports: [
         BrowserModule,
         StoreModule.forRoot(appReducer),
         EffectsModule.forRoot([]),
         ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
-        StoreDevtoolsModule.instrument(<any> {
+        StoreDevtoolsModule.instrument(<any>{
             maxAgent: 25,
             logOnly: environment.production,
         }),
@@ -44,5 +41,4 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     providers: [],
     bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
