@@ -1,7 +1,7 @@
 <ubud-topbar-layout>
     <img src="/assets/images/logo-symbol-white.png" topbarLogo title="Ubud" />
 
-    <ul navbarMenu class="navbar-nav mr-auto">
+    <ul navbarMenu class="navbar-nav navbar-link" #navbarLink>
         <li class="nav-item"><a href="">Dashboard</a></li>
         <li class="nav-item"><a href="">Documents</a></li>
     </ul>
@@ -26,6 +26,11 @@
                     </a>
                 </div>
             </ubud-user-control>
+        </li>
+        <li class="nav-item mobile-toggle">
+            <a ubudTooltip="More" tooltipPlacement="bottom" class="icon-only" (click)="navbarLink.classList.toggle('active')">
+                <i class="fas fa-ellipsis-v"></i>
+            </a>
         </li>
     </ul>
 
