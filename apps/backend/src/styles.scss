@@ -44,6 +44,10 @@ ubud-topbar-layout {
 
         .navbar-nav {
 
+            .dropdown-menu {
+                position: absolute !important;
+            }
+
             &.navbar-link {
                 margin-right: 0 !important;
                 flex: 1;
