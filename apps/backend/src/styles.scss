@@ -1,4 +1,4 @@
-@import '../../../assets/styles/variables';
+@import '../../../scss/variables';
 @import '~@ubud/bootstrap-theme/main';
 
 html,
@@ -20,7 +20,7 @@ a {
 
 ubud-topbar-layout {
     .navbar {
-        background-color: theme-color("primary");
+        background-color: theme-color('primary');
         padding: 0 1rem;
         height: 43px !important;
 
@@ -43,7 +43,6 @@ ubud-topbar-layout {
         }
 
         .navbar-nav {
-
             .dropdown-menu {
                 position: absolute !important;
             }
