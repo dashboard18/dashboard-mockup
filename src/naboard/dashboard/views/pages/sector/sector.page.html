@@ -1,0 +1,264 @@
+<section class="dashboard-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 mb-4">
+                <h4 class="text-center">Laporan Harian</h4>
+                <kendo-sparkline [chartArea]="{background: '#fff'}" [series]="series"></kendo-sparkline>
+            </div>
+            <div class="col-md-5 mb-4">
+                <h4 class="text-center">Laporan Bulanan</h4>
+                <kendo-sparkline [chartArea]="{background: '#fff'}" [series]="seriesLine"></kendo-sparkline>
+            </div>
+            <div class="col-md-2 mb-4 bg-gray-100 pt-3 pb-3">
+                <h4>Total</h4>
+                <h1 class="text-success mt-4">30.000</h1>
+                <p class="text-muted"><small>Laporan tahun ini</small></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="dashboard-section">
+    <div class="container">
+        <h4>Statistik Perusahaan</h4>
+        <p class="text-muted">Klasifikasi perusahaan per provinsi</p>
+        <kendo-chart style="height: 500px">
+            <kendo-chart-area background="#fff"></kendo-chart-area>
+            <kendo-chart-legend
+                    [visible]="true"
+                    [labels]="labels"
+                    orientation="vertical"
+                    position="right"
+            ></kendo-chart-legend>
+            <kendo-chart-series>
+                <kendo-chart-series-item
+                        *ngFor="let item of totalCompanies"
+                        [data]="[item.total]"
+                        [name]="item.province"
+                        type="column"
+                >
+                    <kendo-chart-series-item-tooltip format="{{ item.province }}: {0}">
+                    </kendo-chart-series-item-tooltip>
+                </kendo-chart-series-item>
+            </kendo-chart-series>
+        </kendo-chart>
+    </div>
+</section>
+
+<section class="dashboard-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4 class="mt-0">Per Sektor</h4>
+                        <p>
+                            Klasifikasi perusahaan per sektor bidang usaha
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <kendo-chart>
+                            <kendo-chart-tooltip>
+                                <ng-template
+                                        kendoChartSeriesTooltipTemplate
+                                        let-percentage="percentage"
+                                        let-value="value"
+                                        let-category="category"
+                                >
+                                    <div>{{ category }}: {{ percentage | percent }} ({{ value }})</div>
+                                </ng-template>
+                            </kendo-chart-tooltip>
+                            <kendo-chart-area background="#fff"></kendo-chart-area>
+                            <kendo-chart-series>
+                                <kendo-chart-series-item
+                                        [data]="totalBusinessCategories"
+                                        categoryField="business_category"
+                                        field="total"
+                                        type="donut"
+                                >
+                                    <kendo-chart-series-item-labels
+                                            [content]="donutLabelContent"
+                                            color="#fff"
+                                            background="none"
+                                    >
+                                    </kendo-chart-series-item-labels>
+                                </kendo-chart-series-item>
+                                <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+                            </kendo-chart-series>
+                        </kendo-chart>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4 class="mt-0">Per Status Permodalan dan Status Kepemilikan</h4>
+                        <p>
+                            Klasifikasi perusahaan per status permodalan dan status kepemilikan
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <kendo-chart>
+                            <kendo-chart-tooltip>
+                                <ng-template
+                                        kendoChartSeriesTooltipTemplate
+                                        let-value="value"
+                                        let-percentage="percentage"
+                                        let-category="category"
+                                        let-series="series"
+                                >
+                                    <div>{{ series.name }} - {{ category }}: {{ percentage | percent }} ({{ value }})</div>
+                                </ng-template>
+                            </kendo-chart-tooltip>
+                            <kendo-chart-area background="#fff"></kendo-chart-area>
+                            <kendo-chart-series>
+                                <kendo-chart-series-item
+                                        [data]="totalCapitals"
+                                        name="Permodalan"
+                                        categoryField="capital"
+                                        field="total"
+                                        type="donut"
+                                >
+                                    <kendo-chart-series-item-labels
+                                            [content]="donutLabelContent"
+                                            color="#fff"
+                                            background="none"
+                                    >
+                                    </kendo-chart-series-item-labels>
+                                </kendo-chart-series-item>
+                                <kendo-chart-series-item
+                                        [data]="totalOwnerships"
+                                        name="Kepemilikan"
+                                        categoryField="ownership"
+                                        field="total"
+                                        type="donut"
+                                >
+                                    <kendo-chart-series-item-labels
+                                            [content]="donutLabelContent"
+                                            color="#fff"
+                                            background="none"
+                                    >
+                                    </kendo-chart-series-item-labels>
+                                </kendo-chart-series-item>
+                                <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+                            </kendo-chart-series>
+                        </kendo-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="dashboard-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <h4>Mikro</h4>
+                <h1 class="text-success mt-4">{{ 19.373 }}</h1>
+                <p class="text-muted">
+                    <small>Total Perusahaan Mikro</small>
+                </p>
+            </div>
+            <div class="col-md-3">
+                <h4>Kecil</h4>
+                <h1 class="text-success mt-4">{{ 8.071 }}</h1>
+                <p class="text-muted">
+                    <small>Total Perusahaan Kecil</small>
+                </p>
+            </div>
+            <div class="col-md-3">
+                <h4>Menengah</h4>
+                <h1 class="text-success mt-4">{{ 5.827 }}</h1>
+                <p class="text-muted">
+                    <small>Total Perusahaan Menengah</small>
+                </p>
+            </div>
+            <div class="col-md-3">
+                <h4>Besar</h4>
+                <h1 class="text-success mt-4">{{ 2.323 }}</h1>
+                <p class="text-muted">
+                    <small>Total Perusahaan Besar</small>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dashboard-section">
+    <div class="container">
+        <h4>Klasifikasi Usaha</h4>
+        <p class="text-muted">Klasifikasi usaha berdasarkan wilayah</p>
+        <div class="d-none d-lg-block">
+            <kendo-chart style="height: 1800px">
+                <kendo-chart-tooltip>
+                    <ng-template
+                            kendoChartSeriesTooltipTemplate
+                            let-category="category"
+                            let-value="value"
+                            let-series="series"
+                    >
+                        <div>{{ category }} - {{ series.name }}: {{ value }}</div>
+                    </ng-template>
+                </kendo-chart-tooltip>
+                <kendo-chart-area background="#fff"></kendo-chart-area>
+                <kendo-chart-legend
+                        orientation="horizontal"
+                        position="bottom"
+                >
+                </kendo-chart-legend>
+                <kendo-chart-series>
+                    <kendo-chart-series-item
+                            [data]="totalStats"
+                            name="Mikro"
+                            categoryField="province"
+                            [spacing]="1"
+                            field="total_micro"
+                            type="bar"
+                    >
+                    </kendo-chart-series-item>
+                    <kendo-chart-series-item
+                            [data]="totalStats"
+                            name="Kecil"
+                            categoryField="province"
+                            [spacing]="1"
+                            field="total_small"
+                            type="bar"
+                    >
+                    </kendo-chart-series-item>
+                    <kendo-chart-series-item
+                            [data]="totalStats"
+                            name="Menengah"
+                            categoryField="province"
+                            [spacing]="1"
+                            field="total_medium"
+                            type="bar"
+                    >
+                    </kendo-chart-series-item>
+                    <kendo-chart-series-item
+                            [data]="totalStats"
+                            name="Besar"
+                            categoryField="province"
+                            [spacing]="1"
+                            field="total_big"
+                            type="bar"
+                    >
+                    </kendo-chart-series-item>
+                </kendo-chart-series>
+                <kendo-chart-category-axis>
+                    <kendo-chart-category-axis-item
+                            [labels]="label"
+                            [majorGridLines]="{visible: false}"
+                    >
+                    </kendo-chart-category-axis-item>
+                </kendo-chart-category-axis>
+            </kendo-chart>
+        </div>
+    </div>
+</section>

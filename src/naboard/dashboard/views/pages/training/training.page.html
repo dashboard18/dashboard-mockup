@@ -1,0 +1,444 @@
+<section class="dashboard-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Perencanaan Tenaga Kerja</h4>
+                <h1 class="text-success mt-4">{{ 3.281 }}</h1>
+                <p class="text-muted">
+                    <small>Mempunyai Perencanaan Tenaga Kerja</small>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h4>Lembaga Pelatihan</h4>
+                <h1 class="text-success mt-4">
+                    {{ 551 }}
+                    <sub>/276.058</sub>
+                </h1>
+                <p class="text-muted">
+                    <small>Mempunyai Lembaga Pelatihan / Kapasitas</small>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h4>Pemagangan</h4>
+                <h1 class="text-success mt-4">
+                    {{ 2.140 }}
+                    <sub>/ {{ 37.185 }}</sub>
+                </h1>
+                <p class="text-muted">
+                    <small>Melakukan Pemagangan / Kapasitas</small>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dashboard-section">
+    <div class="container">
+        <h4>Perencanaan Tenaga Kerja</h4>
+        <p class="text-muted">Klasifikasi perencanaan tenaga kerja berdasarkan wilayah</p>
+
+        <kendo-chart style="height: 500px">
+            <kendo-chart-area background="#fff"></kendo-chart-area>
+            <kendo-chart-legend
+                    [labels]="labels"
+                    orientation="vertical"
+                    position="right"
+            ></kendo-chart-legend>
+            <kendo-chart-series>
+                <kendo-chart-series-item
+                        *ngFor="let item of totalOfJobVacancyPlans"
+                        [data]="[item.total]"
+                        [name]="item.province"
+                        type="column"
+                >
+                    <kendo-chart-series-item-tooltip format="{{ item.province }}: {0}">
+                    </kendo-chart-series-item-tooltip>
+                </kendo-chart-series-item>
+            </kendo-chart-series>
+        </kendo-chart>
+    </div>
+</section>
+
+<section class="dashboard-section">
+    <div class="container">
+        <h4>Lembaga Pelatihan</h4>
+        <p class="text-muted">Klasifikasi lembaga pelatihan berdasarkan wilayah</p>
+
+        <kendo-chart style="height: 500px">
+            <kendo-chart-area background="#fff"></kendo-chart-area>
+            <kendo-chart-legend
+                    [labels]="labels"
+                    orientation="vertical"
+                    position="right"
+            ></kendo-chart-legend>
+            <kendo-chart-series>
+                <kendo-chart-series-item
+                        *ngFor="let item of totalOfInternships"
+                        [data]="[item.total]"
+                        [name]="item.province"
+                        type="column"
+                >
+                    <kendo-chart-series-item-tooltip format="{{ item.province }}: {0}">
+                    </kendo-chart-series-item-tooltip>
+                </kendo-chart-series-item>
+            </kendo-chart-series>
+        </kendo-chart>
+    </div>
+</section>
+
+<section class="dashboard-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4 class="mt-0">Per Sektor</h4>
+                        <p>
+                            Klasifikasi lembaga pelatihan per sektor bidang usaha
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <kendo-chart>
+                            <kendo-chart-tooltip>
+                                <ng-template
+                                        kendoChartSeriesTooltipTemplate
+                                        let-percentage="percentage"
+                                        let-value="value"
+                                        let-category="category"
+                                >
+                                    <div>{{ category }}: {{ percentage | percent }} ({{ value }})</div>
+                                </ng-template>
+                            </kendo-chart-tooltip>
+                            <kendo-chart-area background="#fff"></kendo-chart-area>
+                            <kendo-chart-series>
+                                <kendo-chart-series-item
+                                        [data]="businessCategory"
+                                        categoryField="category"
+                                        field="total"
+                                        type="donut"
+                                >
+                                    <kendo-chart-series-item-labels
+                                            [content]="labelContent"
+                                            color="#fff"
+                                            background="none"
+                                    >
+                                    </kendo-chart-series-item-labels>
+                                </kendo-chart-series-item>
+                                <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+                            </kendo-chart-series>
+                        </kendo-chart>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4 class="mt-0">Per Program</h4>
+                        <p>
+                            Klasifikasi lembaga pelatihan per program
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <kendo-chart>
+                            <kendo-chart-tooltip>
+                                <ng-template
+                                        kendoChartSeriesTooltipTemplate
+                                        let-percentage="percentage"
+                                        let-value="value"
+                                        let-category="category"
+                                >
+                                    <div>{{ category }}: {{ percentage | percent }} ({{ value }})</div>
+                                </ng-template>
+                            </kendo-chart-tooltip>
+                            <kendo-chart-area background="#fff"></kendo-chart-area>
+                            <kendo-chart-series>
+                                <kendo-chart-series-item
+                                        [data]="totalVocationals"
+                                        categoryField="category"
+                                        field="total"
+                                        type="donut"
+                                >
+                                    <kendo-chart-series-item-labels
+                                            [content]="labelContent"
+                                            color="#fff"
+                                            background="none"
+                                    >
+                                    </kendo-chart-series-item-labels>
+                                </kendo-chart-series-item>
+                                <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+                            </kendo-chart-series>
+                        </kendo-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dashboard-section">
+    <div class="container">
+        <h4>Kapasitas Lambaga Pelatihan</h4>
+        <p class="text-muted">Klasifikasi kapasitas lembaga pelatihan berdasarkan wilayah</p>
+        <div *ngIf="isLG">
+            <kendo-chart style="height: 500px">
+                <kendo-chart-area background="#fff"></kendo-chart-area>
+                <kendo-chart-legend
+                        [labels]="labels"
+                        orientation="vertical"
+                        position="right"
+                ></kendo-chart-legend>
+                <kendo-chart-series>
+                    <kendo-chart-series-item
+                            *ngFor="let item of []"
+                            [data]="[item.total]"
+                            [name]="item.category"
+                            type="column"
+                    >
+                        <kendo-chart-series-item-tooltip format="{{ item.category }}: {0}">
+                        </kendo-chart-series-item-tooltip>
+                    </kendo-chart-series-item>
+                </kendo-chart-series>
+            </kendo-chart>
+        </div>
+    </div>
+</section>
+
+<section class="dashboard-section">
+    <div class="container limit-width">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4 class="mt-0">Per Sektor</h4>
+                        <p>
+                            Klasifikasi kapasitas lembaga pelatihan per sektor bidang usaha
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <kendo-chart>
+                            <kendo-chart-tooltip>
+                                <ng-template
+                                        kendoChartSeriesTooltipTemplate
+                                        let-percentage="percentage"
+                                        let-value="value"
+                                        let-category="category"
+                                >
+                                    <div>{{ category }}: {{ percentage | percent }} ({{ value }})</div>
+                                </ng-template>
+                            </kendo-chart-tooltip>
+                            <kendo-chart-area background="#fff"></kendo-chart-area>
+                            <kendo-chart-series>
+                                <kendo-chart-series-item
+                                        [data]="totalCapacityVocational"
+                                        categoryField="category"
+                                        field="total"
+                                        type="donut"
+                                >
+                                    <kendo-chart-series-item-labels
+                                            [content]="labelContent"
+                                            color="#fff"
+                                            background="none"
+                                    >
+                                    </kendo-chart-series-item-labels>
+                                </kendo-chart-series-item>
+                                <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+                            </kendo-chart-series>
+                        </kendo-chart>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4 class="mt-0">Per Program</h4>
+                        <p>
+                            Klasifikasi kapasitas lembaga pelatihan per program
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <kendo-chart>
+                            <kendo-chart-tooltip>
+                                <ng-template
+                                        kendoChartSeriesTooltipTemplate
+                                        let-percentage="percentage"
+                                        let-value="value"
+                                        let-category="category"
+                                >
+                                    <div>{{ category }}: {{ percentage | percent }} ({{ value }})</div>
+                                </ng-template>
+                            </kendo-chart-tooltip>
+                            <kendo-chart-area background="#fff"></kendo-chart-area>
+                            <kendo-chart-series>
+                                <kendo-chart-series-item
+                                        [data]="totalVocationals"
+                                        categoryField="category"
+                                        field="total"
+                                        type="donut"
+                                >
+                                    <kendo-chart-series-item-labels
+                                            [content]="labelContent"
+                                            color="#fff"
+                                            background="none"
+                                    >
+                                    </kendo-chart-series-item-labels>
+                                </kendo-chart-series-item>
+                                <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+                            </kendo-chart-series>
+                        </kendo-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="dashboard-section">
+    <div class="container">
+        <h4>Pemagangan</h4>
+        <p class="text-muted">Klasifikasi pemagangan berdasarkan wilayah</p>
+
+        <div class="d-none d-lg-block">
+            <kendo-chart style="height: 500px">
+                <kendo-chart-area background="#f8f9fa"></kendo-chart-area>
+                <kendo-chart-legend [labels]="labels" orientation="vertical" position="right"></kendo-chart-legend>
+                <kendo-chart-series>
+                    <kendo-chart-series-item *ngFor="let item of totalInternships"
+                                             [data]="[item.total]"
+                                             [name]="item.province"
+                                             type="column">
+                        <kendo-chart-series-item-tooltip format="{{ item.province }}: {0}">
+                        </kendo-chart-series-item-tooltip>
+                    </kendo-chart-series-item>
+                </kendo-chart-series>
+            </kendo-chart>
+        </div>
+    </div>
+</section>
+
+<section class="dashboard-section">
+    <div class="container">
+        <h4>Kapasitas Pemagangan</h4>
+        <p class="text-muted">Klasifikasi kapasitas pemagangan berdasarkan wilayah</p>
+        <kendo-chart style="height: 500px">
+            <kendo-chart-area background="#fff"></kendo-chart-area>
+            <kendo-chart-legend
+                    [labels]="labels"
+                    orientation="vertical"
+                    position="right"
+            ></kendo-chart-legend>
+            <kendo-chart-series>
+                <kendo-chart-series-item
+                        *ngFor="let item of totalInternships"
+                        [data]="[item.total]"
+                        [name]="item.province"
+                        type="column"
+                >
+                    <kendo-chart-series-item-tooltip format="{{ item.province }}: {0}">
+                    </kendo-chart-series-item-tooltip>
+                </kendo-chart-series-item>
+            </kendo-chart-series>
+        </kendo-chart>
+    </div>
+</section>
+
+<section class="dashboard-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4 class="mt-0">Berdasarkan Program</h4>
+                        <p>
+                            Klasifikasi kapasitas pemagangan berdasarkan program
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <kendo-chart>
+                            <kendo-chart-tooltip>
+                                <ng-template
+                                        kendoChartSeriesTooltipTemplate
+                                        let-percentage="percentage"
+                                        let-value="value"
+                                        let-category="category"
+                                >
+                                    <div>{{ category }}: {{ percentage | percent }} ({{ value }})</div>
+                                </ng-template>
+                            </kendo-chart-tooltip>
+                            <kendo-chart-area background="#fff"></kendo-chart-area>
+                            <kendo-chart-series>
+                                <kendo-chart-series-item
+                                        [data]="totalVocationals"
+                                        categoryField="category"
+                                        field="total"
+                                        type="donut"
+                                >
+                                    <kendo-chart-series-item-labels
+                                            [content]="labelContent"
+                                            color="#fff"
+                                            background="none"
+                                    >
+                                    </kendo-chart-series-item-labels>
+                                </kendo-chart-series-item>
+                                <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+                            </kendo-chart-series>
+                        </kendo-chart>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4 class="mt-0">Berdasarkan Posisi</h4>
+                        <p>
+                            Klasifikasi kapasitas pemagangan berdasarkan posisi
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <kendo-chart>
+                            <kendo-chart-tooltip>
+                                <ng-template
+                                        kendoChartSeriesTooltipTemplate
+                                        let-percentage="percentage"
+                                        let-value="value"
+                                        let-category="category"
+                                >
+                                    <div>{{ category }}: {{ percentage | percent }} ({{ value }})</div>
+                                </ng-template>
+                            </kendo-chart-tooltip>
+                            <kendo-chart-area background="#fff"></kendo-chart-area>
+                            <kendo-chart-series>
+                                <kendo-chart-series-item
+                                        [data]="totalPosition"
+                                        categoryField="category"
+                                        field="total"
+                                        type="donut"
+                                >
+                                    <kendo-chart-series-item-labels
+                                            [content]="labelContent"
+                                            color="#fff"
+                                            background="none"
+                                    >
+                                    </kendo-chart-series-item-labels>
+                                </kendo-chart-series-item>
+                                <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+                            </kendo-chart-series>
+                        </kendo-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

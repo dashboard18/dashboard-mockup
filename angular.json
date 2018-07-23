@@ -44,7 +44,12 @@
                         "polyfills": "apps/backend/src/polyfills.ts",
                         "tsConfig": "apps/backend/tsconfig.app.json",
                         "assets": ["apps/backend/src/favicon.ico", "apps/backend/src/assets"],
-                        "styles": ["apps/backend/src/styles.scss"],
+                        "styles": [
+                            {
+                                "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
+                            },
+                            "apps/backend/src/styles.scss"
+                        ],
                         "scripts": []
                     },
                     "configurations": {
@@ -92,7 +97,12 @@
                         "polyfills": "apps/backend/src/polyfills.ts",
                         "tsConfig": "apps/backend/tsconfig.spec.json",
                         "karmaConfig": "apps/backend/karma.conf.js",
-                        "styles": ["apps/backend/src/styles.scss"],
+                        "styles": [
+                            {
+                                "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
+                            },
+                            "apps/backend/src/styles.scss"
+                        ],
                         "scripts": [],
                         "assets": ["apps/backend/src/favicon.ico", "apps/backend/src/assets"]
                     }

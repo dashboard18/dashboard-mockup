@@ -14,6 +14,15 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import 'hammerjs';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { far } from '@fortawesome/free-regular-svg-icons';
+
+library.add(fas, far);
 
 @NgModule({
     declarations: [AppComponent],
@@ -33,6 +42,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
         UbudDropdownModule,
         UbudUserControlModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+        ChartsModule,
+        BrowserAnimationsModule,
+        ButtonsModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

@@ -1,0 +1,34 @@
+<section class="bg-primary pt-4 pb-4">
+    <div class="container">
+        <div class="tab-scrollable">
+            <div class="d-flex w-100 flex-wrap tab-scrollable-container">
+                <div style="margin: 0 auto">
+                    <button kendoButton [primary]="router.isActive('employees', true)" (click)="goToPage('employees')" class="btn">
+                        <fa-icon class="fa-3x" [icon]="['fas', 'user-tie']"></fa-icon><br/>
+                        Tenaga Kerja
+                    </button>
+
+                    <button kendoButton [primary]="router.isActive('sectors', true)" (click)="goToPage('sectors')" class="btn">
+                        <fa-icon class="fa-3x" [icon]="['fas', 'building']"></fa-icon><br/>
+                        Perusahaan
+                    </button>
+
+                    <button kendoButton [primary]="router.isActive('jobs', true)" (click)="goToPage('jobs')" style="padding-top: 20px;" class="btn">
+                        <fa-icon class="fa-3x" [icon]="['fas', 'briefcase']"></fa-icon><br/>
+                        Lowongan Pekerjaan
+                    </button>
+
+                    <button kendoButton="" [primary]="router.isActive('trainings', true)" (click)="goToPage('trainings')" class="btn">
+                        <fa-icon class="fa-3x" [icon]="['fas', 'bezier-curve']"></fa-icon><br/>
+                        Training Center
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<router-outlet></router-outlet>
+
+

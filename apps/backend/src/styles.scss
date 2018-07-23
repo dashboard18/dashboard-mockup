@@ -1,11 +1,16 @@
 @import '../../../scss/variables';
 @import '~@ubud/bootstrap-theme/main';
+@import 'assets/fonts/font';
+@import '../../../scss/custom';
 
 html,
 body {
     height: 100%;
     width: 100%;
     background-color: $white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 a {

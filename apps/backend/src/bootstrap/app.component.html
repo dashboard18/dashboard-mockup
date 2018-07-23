@@ -2,8 +2,7 @@
     <img src="/assets/images/logo-symbol-white.png" topbarLogo title="Ubud" />
 
     <ul navbarMenu class="navbar-nav navbar-link" #navbarLink>
-        <li class="nav-item"><a href="">Dashboard</a></li>
-        <li class="nav-item"><a href="">Documents</a></li>
+        <li class="nav-item active"><a class="active" href="">Dashboard</a></li>
     </ul>
 
     <ul navbarMenu class="navbar-nav">
@@ -33,8 +32,6 @@
             </a>
         </li>
     </ul>
-
-    <div class="container">
-        Content Goes Here!
-    </div>
+    <router-outlet></router-outlet>
+    <div class="clear-fix"></div>
 </ubud-topbar-layout>

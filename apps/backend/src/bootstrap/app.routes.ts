@@ -12,6 +12,11 @@ import { ModuleWithProviders } from '@angular/core';
 /**
  * @author  Iqbal Maulana <iq.bluejack@gmail.com>
  */
-const routes: Routes = [];
+const routes: Routes = [
+    {
+        path: '',
+        loadChildren: '../../../../src/naboard/dashboard/dashboard.module#NaboardDashboardModule',
+    },
+];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

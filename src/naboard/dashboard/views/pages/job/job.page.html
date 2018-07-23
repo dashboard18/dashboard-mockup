@@ -1,0 +1,170 @@
+<section class="dashboard-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Total Lowongan</h4>
+                <h1 class="text-success mt-4">{{ 62.988 }}</h1>
+            </div>
+            <div class="col-md-4">
+                <h4>Lowongan Untuk Laki - Laki</h4>
+                <h1 class="text-success mt-4">{{ 35.472 }}</h1>
+            </div>
+            <div class="col-md-4">
+                <h4>Lowongan Untuk Wanita</h4>
+                <h1 class="text-success mt-4">{{ 27.516 }}</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dashboard-section">
+    <div class="container">
+        <h4>Lowongan Pekerjaan</h4>
+        <p class="text-muted">Klasifikasi lowongan per provinsi</p>
+        <kendo-chart style="height: 500px">
+            <kendo-chart-area background="#fff"></kendo-chart-area>
+            <kendo-chart-legend
+                    [visible]="true"
+                    [labels]="labels"
+                    orientation="vertical"
+                    position="right"
+            ></kendo-chart-legend>
+            <kendo-chart-series>
+                <kendo-chart-series-item
+                        *ngFor="let item of totalVacancies"
+                        [data]="[item.total]"
+                        [name]="item.province"
+                        type="column"
+                >
+                    <kendo-chart-series-item-tooltip format="{{ item.province }}: {0}">
+                    </kendo-chart-series-item-tooltip>
+                </kendo-chart-series-item>
+            </kendo-chart-series>
+        </kendo-chart>
+    </div>
+</section>
+
+<section class="dashboard-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4 class="mt-0">Per posisi / jabatan dan per pendidikan</h4>
+                        <p>
+                            Klasifikasi lowongan per posisi / jabatan dan per pendidikan
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <kendo-chart>
+                            <kendo-chart-tooltip>
+                                <ng-template
+                                        kendoChartSeriesTooltipTemplate
+                                        let-value="value"
+                                        let-percentage="percentage"
+                                        let-category="category"
+                                        let-series="series"
+                                >
+                                    <div>{{ series.name }} - {{ category }}: {{ percentage | percent }} ({{ value }})</div>
+                                </ng-template>
+                            </kendo-chart-tooltip>
+                            <kendo-chart-area background="#fff"></kendo-chart-area>
+                            <kendo-chart-series>
+                                <kendo-chart-series-item
+                                        [data]="totalEducations"
+                                        name="Pendidikan"
+                                        categoryField="education"
+                                        field="total"
+                                        type="donut"
+                                >
+                                    <kendo-chart-series-item-labels
+                                            [content]="labelContent"
+                                            color="#fff"
+                                            background="none"
+                                    >
+                                    </kendo-chart-series-item-labels>
+                                </kendo-chart-series-item>
+                                <kendo-chart-series-item
+                                        [data]="totalPositions"
+                                        name="Posisi"
+                                        categoryField="position"
+                                        field="total"
+                                        type="donut"
+                                >
+                                    <kendo-chart-series-item-labels
+                                            [content]="labelContent"
+                                            color="#fff"
+                                            background="none"
+                                    >
+                                    </kendo-chart-series-item-labels>
+                                </kendo-chart-series-item>
+                                <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+                            </kendo-chart-series>
+                        </kendo-chart>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4 class="mt-0">Per jenis kelamin dan disabilitas</h4>
+                        <p>
+                            Klasifikasi lowongan per jenis kelamin dan disabilitas
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <kendo-chart>
+                            <kendo-chart-tooltip>
+                                <ng-template
+                                        kendoChartSeriesTooltipTemplate
+                                        let-value="value"
+                                        let-percentage="percentage"
+                                        let-category="category"
+                                        let-series="series"
+                                >
+                                    <div>{{ series.name }} - {{ category }}: {{ percentage | percent }} ({{ value }})</div>
+                                </ng-template>
+                            </kendo-chart-tooltip>
+                            <kendo-chart-area background="#fff"></kendo-chart-area>
+                            <kendo-chart-series>
+                                <kendo-chart-series-item
+                                        [data]="genders"
+                                        name="Jenis Kelamin"
+                                        categoryField="status"
+                                        field="total"
+                                        type="donut"
+                                >
+                                    <kendo-chart-series-item-labels
+                                            [content]="labelContent"
+                                            color="#fff"
+                                            background="none"
+                                    >
+                                    </kendo-chart-series-item-labels>
+                                </kendo-chart-series-item>
+                                <kendo-chart-series-item
+                                        [data]="disabilities"
+                                        name="Kondisi"
+                                        categoryField="status"
+                                        field="total"
+                                        type="donut"
+                                >
+                                    <kendo-chart-series-item-labels
+                                            [content]="labelContent"
+                                            color="#fff"
+                                            background="none"
+                                    >
+                                    </kendo-chart-series-item-labels>
+                                </kendo-chart-series-item>
+                                <kendo-chart-legend [visible]="false"></kendo-chart-legend>
+                            </kendo-chart-series>
+                        </kendo-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
