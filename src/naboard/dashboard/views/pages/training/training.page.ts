@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LegendLabels, LegendLabelsContentArgs } from '@progress/kendo-angular-charts';
+import { DashboardService } from '../../../domains/services/dashboard.service';
 
 @Component({
     selector: 'naboard-dashboard-training-page',
     templateUrl: './training.page.html',
 })
-export class TrainingPage {
+export class TrainingPage implements OnInit {
     public isLG: boolean;
     public totalCapacityVocational = [{ total: 5893, category: 'Teknik Manukfaktur' }, { total: 4279, category: 'Teknik Las' }];
     public totalOfJobVacancyPlans = [
@@ -174,18 +175,9 @@ export class TrainingPage {
         { total: 9, province: 'Jambi' },
     ];
 
-    public totalPosition = [
-        { total: 4246, category: 'Teknisi Dan Asisten Ahli' },
-        { total: 11259, category: 'Tenaga Tata Usaha' },
-        { total: 22941, category: 'Profesional' },
-        { total: 24180, category: 'Pekerja Kasar' },
-        { total: 27027, category: 'Tenaga Usaha Jasa Dan Usaha Penjualan' },
-        { total: 3566, category: 'Operator Dan Perakit  Mesin' },
-        { total: 5007, category: 'Pekerja Pengolahan, Kerajinan' },
-        { total: 12, category: 'Tni Dan Polri' },
-        { total: 103, category: 'Pekerja Terampil Pertanian, Kehutanan Dan Perikanan' },
-        { total: 5224, category: 'Manajer' },
-    ];
+    public totalPosition = [];
+
+    public constructor(private service: DashboardService) {}
 
     public labels: LegendLabels = {
         content: (label: LegendLabelsContentArgs): string => {
@@ -195,5 +187,11 @@ export class TrainingPage {
 
     public labelContent(e: any): string {
         return `${(e.percentage * 100).toFixed(1)}%`;
+    }
+
+    public ngOnInit(): void {
+        this.service.fetchData().subscribe((results: any) => {
+            this.totalPosition = results.data.positions;
+        });
     }
 }

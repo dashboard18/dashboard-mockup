@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LegendLabels, LegendLabelsContentArgs, Series } from '@progress/kendo-angular-charts';
+import { DashboardService } from '../../../domains/services/dashboard.service';
 
 @Component({
     selector: 'naboard-dashboard-sector-page',
@@ -13,7 +14,7 @@ import { LegendLabels, LegendLabelsContentArgs, Series } from '@progress/kendo-a
         `,
     ],
 })
-export class SectorPage {
+export class SectorPage implements OnInit {
     labels: LegendLabels = {
         content: (label: LegendLabelsContentArgs): string => {
             return `${label.text}: ${label.series.data[0]}`;
@@ -229,8 +230,14 @@ export class SectorPage {
         },
     ];
 
-    public constructor() {
+    public constructor(private service: DashboardService) {
         this.buildLabelStats();
+    }
+
+    public ngOnInit(): void {
+        this.service.fetchData().subscribe((results: any) => {
+            this.buildLabelStats();
+        });
     }
 
     public labelContent(e: any): string {

@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LegendLabels, LegendLabelsContentArgs } from '@progress/kendo-angular-charts';
+import { DashboardService } from '../../../domains/services/dashboard.service';
 
 @Component({
     selector: 'naboard-dashboard-job-page',
     templateUrl: './job.page.html',
 })
-export class JobPage {
+export class JobPage implements OnInit {
     public totalVacancies = [
         { total: 4, province: 'Nusa Tenggara Barat (NTB)' },
         { total: 16, province: 'Kalimantan Tengah' },
@@ -148,9 +149,15 @@ export class JobPage {
         },
     };
 
-    public constructor() {
+    public constructor(private service: DashboardService) {
         this.buildDisabilities();
         this.buildGender();
+    }
+
+    public ngOnInit(): void {
+        this.service.fetchData().subscribe((results: any) => {
+            this.buildGender();
+        });
     }
 
     public labelContent(e: any): string {

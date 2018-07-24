@@ -1,116 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LegendLabelsContentArgs } from '@progress/kendo-angular-charts';
+import { DashboardService } from '../../../domains/services/dashboard.service';
 
 @Component({
     selector: 'naboard-dashboard-employee-page',
     templateUrl: './employee.page.html',
 })
-export class EmployeePage {
-    public totalStatus = {
-        'Nusa Tenggara Barat (NTB)': [
-            { category: 'Nusa Tenggara Barat (NTB)', status: 'pkwt', total: 780 },
-            { category: 'Nusa Tenggara Barat (NTB)', status: 'pkwtt', total: 964 },
-        ],
-        'Nanggroe Aceh Darussalam (NAD)': [
-            { category: 'Nanggroe Aceh Darussalam (NAD)', status: 'pkwt', total: 655 },
-            { category: 'Nanggroe Aceh Darussalam (NAD)', status: 'pkwtt', total: 453 },
-        ],
-        'Kalimantan Tengah': [
-            { category: 'Kalimantan Tengah', status: 'pkwt', total: 4378 },
-            { category: 'Kalimantan Tengah', status: 'pkwtt', total: 2732 },
-        ],
-        'Sumatera Barat': [
-            { category: 'Sumatera Barat', status: 'pkwt', total: 4465 },
-            { category: 'Sumatera Barat', status: 'pkwtt', total: 3058 },
-        ],
-        'Kepulauan Riau': [
-            { category: 'Kepulauan Riau', status: 'pkwt', total: 8356 },
-            { category: 'Kepulauan Riau', status: 'pkwtt', total: 4959 },
-        ],
-        'Kalimantan Selatan': [
-            { category: 'Kalimantan Selatan', status: 'pkwt', total: 1900 },
-            { category: 'Kalimantan Selatan', status: 'pkwtt', total: 3579 },
-        ],
-        Gorontalo: [{ category: 'Gorontalo', status: 'pkwt', total: 125 }, { category: 'Gorontalo', status: 'pkwtt', total: 38 }],
-        'Jawa Timur': [{ category: 'Jawa Timur', status: 'pkwt', total: 19715 }, { category: 'Jawa Timur', status: 'pkwtt', total: 16790 }],
-        'Sulawesi Tengah': [
-            { category: 'Sulawesi Tengah', status: 'pkwt', total: 1675 },
-            { category: 'Sulawesi Tengah', status: 'pkwtt', total: 1356 },
-        ],
-        'Sumatera Utara': [
-            { category: 'Sumatera Utara', status: 'pkwt', total: 6127 },
-            { category: 'Sumatera Utara', status: 'pkwtt', total: 8834 },
-        ],
-        'Kalimantan Barat': [
-            { category: 'Kalimantan Barat', status: 'pkwt', total: 3133 },
-            { category: 'Kalimantan Barat', status: 'pkwtt', total: 3553 },
-        ],
-        Lampung: [{ category: 'Lampung', status: 'pkwt', total: 1926 }, { category: 'Lampung', status: 'pkwtt', total: 1816 }],
-        'Sumatera Selatan': [
-            { category: 'Sumatera Selatan', status: 'pkwt', total: 1583 },
-            { category: 'Sumatera Selatan', status: 'pkwtt', total: 822 },
-        ],
-        'Sulawesi Barat': [
-            { category: 'Sulawesi Barat', status: 'pkwt', total: 26 },
-            { category: 'Sulawesi Barat', status: 'pkwtt', total: 3 },
-        ],
-        'Sulawesi Utara': [
-            { category: 'Sulawesi Utara', status: 'pkwt', total: 2070 },
-            { category: 'Sulawesi Utara', status: 'pkwtt', total: 1081 },
-        ],
-        'Jawa Tengah': [
-            { category: 'Jawa Tengah', status: 'pkwt', total: 22460 },
-            { category: 'Jawa Tengah', status: 'pkwtt', total: 78609 },
-        ],
-        Bengkulu: [{ category: 'Bengkulu', status: 'pkwt', total: 1254 }, { category: 'Bengkulu', status: 'pkwtt', total: 919 }],
-        'Nusa Tenggara Timur (NTT)': [
-            { category: 'Nusa Tenggara Timur (NTT)', status: 'pkwt', total: 349 },
-            { category: 'Nusa Tenggara Timur (NTT)', status: 'pkwtt', total: 254 },
-        ],
-        'Sulawesi Tenggara': [
-            { category: 'Sulawesi Tenggara', status: 'pkwt', total: 250 },
-            { category: 'Sulawesi Tenggara', status: 'pkwtt', total: 75 },
-        ],
-        Banten: [{ category: 'Banten', status: 'pkwt', total: 25777 }, { category: 'Banten', status: 'pkwtt', total: 29750 }],
-        'DI Yogyakarta': [
-            { category: 'DI Yogyakarta', status: 'pkwt', total: 4492 },
-            { category: 'DI Yogyakarta', status: 'pkwtt', total: 4804 },
-        ],
-        'Bangka Belitung': [
-            { category: 'Bangka Belitung', status: 'pkwt', total: 664 },
-            { category: 'Bangka Belitung', status: 'pkwtt', total: 180 },
-        ],
-        'Kalimantan Timur': [
-            { category: 'Kalimantan Timur', status: 'pkwt', total: 2960 },
-            { category: 'Kalimantan Timur', status: 'pkwtt', total: 2777 },
-        ],
-        Bali: [{ category: 'Bali', status: 'pkwt', total: 8593 }, { category: 'Bali', status: 'pkwtt', total: 8934 }],
-        Riau: [{ category: 'Riau', status: 'pkwt', total: 4314 }, { category: 'Riau', status: 'pkwtt', total: 2252 }],
-        'Maluku Utara': [
-            { category: 'Maluku Utara', status: 'pkwt', total: 257 },
-            { category: 'Maluku Utara', status: 'pkwtt', total: 120 },
-        ],
-        'Papua Barat': [{ category: 'Papua Barat', status: 'pkwt', total: 69 }, { category: 'Papua Barat', status: 'pkwtt', total: 67 }],
-        'Jawa Barat': [
-            { category: 'Jawa Barat', status: 'pkwt', total: 208613 },
-            { category: 'Jawa Barat', status: 'pkwtt', total: 289436 },
-        ],
-        Maluku: [{ category: 'Maluku', status: 'pkwt', total: 1516 }, { category: 'Maluku', status: 'pkwtt', total: 1959 }],
-        'Kalimantan Utara': [
-            { category: 'Kalimantan Utara', status: 'pkwt', total: 2390 },
-            { category: 'Kalimantan Utara', status: 'pkwtt', total: 1260 },
-        ],
-        'Sulawesi Selatan': [
-            { category: 'Sulawesi Selatan', status: 'pkwt', total: 3631 },
-            { category: 'Sulawesi Selatan', status: 'pkwtt', total: 1887 },
-        ],
-        Jambi: [{ category: 'Jambi', status: 'pkwt', total: 2786 }, { category: 'Jambi', status: 'pkwtt', total: 3853 }],
-        'DKI Jakarta': [
-            { category: 'DKI Jakarta', status: 'pkwt', total: 192840 },
-            { category: 'DKI Jakarta', status: 'pkwtt', total: 280740 },
-        ],
-        Papua: [{ category: 'Papua', status: 'pkwt', total: 209 }, { category: 'Papua', status: 'pkwtt', total: 30 }],
-    };
+export class EmployeePage implements OnInit {
+    public totalStatus: any;
+
     public totalGenders = {
         'Nusa Tenggara Barat (NTB)': [
             { category: 'Nusa Tenggara Barat (NTB)', gender: 'Laki - Laki', total: 1304 },
@@ -254,10 +152,15 @@ export class EmployeePage {
 
     public label = null;
 
-    public constructor() {
-        this.buildGender();
-        this.buildStatus();
-        this.buildLabel();
+    public constructor(public service: DashboardService) {}
+
+    public ngOnInit(): void {
+        this.service.fetchData().subscribe((results: any) => {
+            this.totalStatus = results.data.status;
+            this.buildStatus();
+            this.buildGender();
+            this.buildLabel();
+        });
     }
 
     public labelContent(e: any): string {
@@ -273,8 +176,9 @@ export class EmployeePage {
 
     public buildStatus(): void {
         Object.values(this.totalStatus).forEach(([pkwt, pkwtt]) => {
-            this.pkwts.push({ category: pkwt.category, total: pkwt.total });
-            this.pkwtts.push({ category: pkwtt.category, total: pkwtt.total });
+            // console.log(pkwt);
+            this.pkwts.push({ category: pkwt.province, total: pkwt.total });
+            this.pkwtts.push({ category: pkwtt.province, total: pkwtt.total });
         });
     }
 

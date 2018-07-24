@@ -46,7 +46,7 @@
         "@ubud/bootstrap-theme": "^2.0.0",
         "@ubud/dropdown": "^2.0.0",
         "@ubud/form": "^2.0.0",
-        "@ubud/http": "^2.0.0",
+        "@ubud/http": "^2.0.1",
         "@ubud/loader": "^2.0.0",
         "@ubud/menus": "^2.0.0",
         "@ubud/ngrx": "^2.0.0",
